@@ -1,0 +1,15 @@
+digraph simplePod {
+    "Start" -> "Schedule" [ label = "default-scheduler/Scheduled" ];
+    "Schedule" -> "Pull" [ label = "kubelet/Pulled" ];
+    "Schedule" -> "DNS" [ label = "kube2udns/UpdateDNSSuccess" ];
+    "DNS" -> "Pull" [ label = "kubelet/Pulled" ];
+    "Pull" -> "Create" [ label = "kubelet/Created" ];
+    "Create" -> "Done" [ label = "kubelet/Started" ];
+
+    "Start";
+    "Schedule";
+    "Pull";
+    "DNS";
+    "Create";
+    "Done";
+}
